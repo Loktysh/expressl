@@ -25,4 +25,4 @@ function getPrice () {
     bot.sendMessage(process.env.tgid, `${title}`);
   })
 }
-setInterval(() => getPrice(), 60000);
+setInterval(() => getPrice(), 1800000);
