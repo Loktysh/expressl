@@ -1,6 +1,7 @@
 const express = require('express');
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
+const cron = require('node-cron');
 const app = express()
 const port = process.env.PORT || 3000;
 var TelegramBot = require('node-telegram-bot-api');
@@ -15,8 +16,8 @@ app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
 
-function getPrice () {
-  console.log('Start getting')
+cron.schedule('30 * * * *', () => {
+  console.log('Fetching price')
   fetch(priceURL)
   .then(res => res.text())
   .then(text => {
@@ -24,5 +25,4 @@ function getPrice () {
     title = $(".catalog-masthead__title").text().trim();
     bot.sendMessage(process.env.tgid, `${title}`);
   })
-}
-setInterval(() => getPrice(), 60000);
+});
