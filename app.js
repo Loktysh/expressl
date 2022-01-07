@@ -16,7 +16,7 @@ app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
 
-cron.schedule("30 * * * *", () => {
+cron.schedule("10 * * * *", () => {
   console.log("Fetching price");
   fetch(priceURL)
     .then((res) => res.text())
