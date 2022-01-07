@@ -17,8 +17,8 @@ app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
   wakeDyno({
     url: 'https://expressl.herokuapp.com/',
-    interval: 60000,
-    startNap: [21, 0, 0, 0],
+    interval: 1200000,
+    startNap: [22, 0, 0, 0],
     endNap: [5, 0, 0, 0],
   }).start();
 });
