@@ -1,4 +1,5 @@
 const express = require("express");
+const wakeDyno = require("woke-dyno");
 const fetch = require("node-fetch");
 const cheerio = require("cheerio");
 const cron = require("node-cron");
@@ -14,15 +15,16 @@ app.get("/", (req, res) => {
 });
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
+  wakeDyno('https://expressl.herokuapp.com/').start();
 });
 
-cron.schedule("10 * * * *", () => {
-  console.log("Fetching price");
+cron.schedule(`${process.env.timer} * * * *`, () => {
   fetch(priceURL)
     .then((res) => res.text())
     .then((text) => {
       var $ = cheerio.load(text);
       title = $(".catalog-masthead__title").text().trim();
       bot.sendMessage(process.env.tgid, `${title}`);
+      console.log("Time: ", new Date());
     });
 });

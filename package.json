@@ -23,6 +23,7 @@
     "express": "^4.17.1",
     "node-cron": "^3.0.0",
     "node-fetch": "^2.6.6",
-    "node-telegram-bot-api": "^0.56.0"
+    "node-telegram-bot-api": "^0.56.0",
+    "woke-dyno": "^0.0.4"
   }
 }
