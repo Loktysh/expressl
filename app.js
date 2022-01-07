@@ -18,7 +18,7 @@ app.listen(port, () => {
   wakeDyno('https://expressl.herokuapp.com/').start();
 });
 
-cron.schedule(`${process.env.timer} * * * *`, () => {
+cron.schedule(`*/${process.env.timer} * * * *`, () => {
   fetch(priceURL)
     .then((res) => res.text())
     .then((text) => {
