@@ -15,7 +15,12 @@ app.get("/", (req, res) => {
 });
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
-  wakeDyno('https://expressl.herokuapp.com/').start();
+  wakeDyno({
+    url: 'https://expressl.herokuapp.com/',
+    interval: 60000,
+    startNap: [21, 0, 0, 0],
+    endNap: [5, 0, 0, 0],
+  }).start();
 });
 
 cron.schedule(`*/${process.env.timer} * * * *`, () => {
