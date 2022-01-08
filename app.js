@@ -15,21 +15,21 @@ app.get("/", (req, res) => {
 });
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
-  wakeDyno({
-    url: 'https://expressl.herokuapp.com/',
-    interval: 1200000,
-    startNap: [22, 0, 0, 0],
-    endNap: [5, 0, 0, 0],
-  }).start();
+  // wakeDyno({
+  //   url: 'https://expressl.herokuapp.com/',
+  //   interval: 1200000,
+  //   startNap: [21, 0, 0, 0],
+  //   endNap: [5, 0, 0, 0],
+  // }).start();
 });
 
 cron.schedule(`*/${process.env.timer} * * * *`, () => {
-  fetch(priceURL)
-    .then((res) => res.text())
-    .then((text) => {
-      var $ = cheerio.load(text);
-      title = $(".catalog-masthead__title").text().trim();
+  // fetch(priceURL)
+  //   .then((res) => res.text())
+  //   .then((text) => {
+  //     var $ = cheerio.load(text);
+  //     title = $(".catalog-masthead__title").text().trim();
       bot.sendMessage(process.env.tgid, `${title}`);
       console.log("Time: ", new Date());
-    });
+    // });
 });
