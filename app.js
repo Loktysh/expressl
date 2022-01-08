@@ -24,12 +24,12 @@ app.listen(port, () => {
 });
 
 cron.schedule(`*/${process.env.timer} * * * *`, () => {
-  // fetch(priceURL)
-  //   .then((res) => res.text())
-  //   .then((text) => {
-  //     var $ = cheerio.load(text);
-  //     title = $(".catalog-masthead__title").text().trim();
+  fetch(priceURL)
+    .then((res) => res.text())
+    .then((text) => {
+      var $ = cheerio.load(text);
+      title = $(".catalog-masthead__title").text().trim();
       bot.sendMessage(process.env.tgid, `${title}`);
       console.log("Time: ", new Date());
-    // });
+    });
 });
